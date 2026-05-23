@@ -1,0 +1,247 @@
+/* ==========================================================================
+   NAVIGATION & ANNOUNCEMENT BAR
+   ========================================================================== */
+
+/* --- Announcement Bar --- */
+.announcement-bar {
+  position: relative;
+  background-color: var(--primary);
+  color: var(--text-primary);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1000;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+.announcement-bar.hidden {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.marquee-container {
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+  color: var(--text-primary); /* Overrides mono-text accent color */
+}
+
+.marquee-content span {
+  padding-right: 50px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 var(--space-sm);
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  background-color: var(--primary); /* Blocks marquee text from bleeding behind X */
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- Header / Navbar Base --- */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  background-color: transparent;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  z-index: 999;
+}
+
+/* Scrolled State triggered by JS */
+.navbar.nav-scrolled {
+  background-color: var(--secondary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+/* --- Logo --- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  z-index: 1001; /* Keeps logo above mobile menu */
+}
+
+.logo-icon {
+  width: 20px;
+  height: auto;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-top: 5px; /* Visual alignment for Bebas Neue */
+}
+
+/* --- Desktop Navigation --- */
+.desktop-nav {
+  display: flex;
+  list-style: none;
+  gap: var(--space-md);
+}
+
+.nav-link {
+  font-family: var(--font-accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  position: relative;
+  padding: 5px 0;
+}
+
+/* Sliding Underline Animation */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* --- CTA & Actions --- */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  z-index: 1001;
+}
+
+.btn-nav-cta {
+  background-color: var(--primary);
+  color: var(--text-primary);
+  border: 2px solid var(--accent);
+  padding: 0.5rem 1.5rem;
+  font-size: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-nav-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+/* --- Hamburger Menu --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger .bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary);
+  transition: all 0.3s ease;
+  transform-origin: left;
+}
+
+/* Hamburger to 'X' Animation */
+.hamburger.is-active .bar:nth-child(1) { transform: rotate(45deg); }
+.hamburger.is-active .bar:nth-child(2) { opacity: 0; }
+.hamburger.is-active .bar:nth-child(3) { transform: rotate(-45deg); }
+
+/* --- Mobile Menu --- */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(13, 13, 13, 0.98); /* Deep dark background */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(100%);
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 1000;
+}
+
+.mobile-menu.is-open {
+  transform: translateX(0);
+}
+
+.mobile-nav-links {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.mobile-link {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  display: block;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s;
+}
+
+.mobile-link:hover {
+  color: var(--accent);
+}
+
+/* Staggered animation when menu is open */
+.mobile-menu.is-open .mobile-link {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: var(--delay);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .desktop-nav { display: none; }
+  .hamburger { display: flex; }
+  .btn-nav-cta { display: none; /* Can be moved into mobile menu if desired */ }
+}
