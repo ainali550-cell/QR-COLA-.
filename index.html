@@ -1,139 +1,191 @@
-<section id="products" class="products-section section-diagonal">
+<section id="testimonials" class="testimonials-section">
   <div class="container">
     
     <!-- Section Header -->
     <div class="section-header text-center mb-lg">
-      <span class="label">THE LINEUP</span>
-      <h2>PICK YOUR FLAVOR. <span class="text-primary">OWN YOUR VIBE.</span></h2>
+      <span class="label">THE CROWD SPEAKS</span>
+      <h2>50,000 CUSTOMERS. <span class="text-primary">ONE VERDICT.</span></h2>
     </div>
 
-    <!-- Filter Tabs -->
-    <div class="filter-tabs">
-      <button class="filter-btn active" data-filter="all">ALL</button>
-      <button class="filter-btn" data-filter="classic">CLASSIC</button>
-      <button class="filter-btn" data-filter="zero">ZERO SUGAR</button>
-      <button class="filter-btn" data-filter="flavored">FLAVORED</button>
+    <!-- Animated Stats Bar -->
+    <div class="stats-bar mb-lg" id="stats-bar">
+      <div class="stat-item">
+        <h3 class="stat-number"><span class="counter" data-target="50">0</span><span class="text-primary">K+</span></h3>
+        <p class="stat-label mono-text">Happy Customers</p>
+      </div>
+      <div class="stat-item">
+        <h3 class="stat-number"><span class="counter" data-target="4.9" data-decimals="1">0</span><span class="text-accent">★</span></h3>
+        <p class="stat-label mono-text">Average Rating</p>
+      </div>
+      <div class="stat-item">
+        <h3 class="stat-number"><span class="counter" data-target="12">0</span></h3>
+        <p class="stat-label mono-text">Flavors Available</p>
+      </div>
+      <div class="stat-item">
+        <h3 class="stat-number"><span class="counter" data-target="3">0</span></h3>
+        <p class="stat-label mono-text">Years in Pakistan</p>
+      </div>
     </div>
+  </div>
 
-    <!-- Product Grid -->
-    <div class="product-grid" id="product-grid">
+  <!-- Marquee Area (Full Width) -->
+  <div class="marquee-wrapper">
+    
+    <!-- Row 1: Scrolls Left -->
+    <div class="marquee-track track-left">
+      <!-- Original Set -->
+      <div class="card review-card">
+        <div class="review-header">
+          <div class="avatar bg-gradient-1">SM</div>
+          <div class="reviewer-info">
+            <h4>Saad M. <span class="city">Karachi</span></h4>
+            <div class="verified-badge">✅ Verified Buyer</div>
+          </div>
+        </div>
+        <div class="stars text-accent">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Finally a local brand that beats the international giants. The original flavor is crisp and the carbonation hits perfectly."</p>
+      </div>
       
-      <!-- Card 1: Original -->
-      <div class="card product-card" data-category="classic">
-        <div class="badge badge-primary">BESTSELLER</div>
-        <div class="card-image-area">
-          <div class="flavor-circle flavor-original">
-            <div class="placeholder-can">QR</div>
+      <div class="card review-card">
+        <div class="review-header">
+          <div class="avatar bg-gradient-2">FA</div>
+          <div class="reviewer-info">
+            <h4>Fatima A. <span class="city">Islamabad</span></h4>
+            <div class="verified-badge">✅ Verified Buyer</div>
           </div>
         </div>
-        <div class="card-content">
-          <h3 class="product-title">QR Cola Original</h3>
-          <p class="product-tagline">"The Classic Knockout"</p>
-          
-          <div class="product-meta">
-            <div class="product-rating">
-              <span class="star-icon">⭐</span> 4.8 <span class="review-count">(234 reviews)</span>
-            </div>
-            <div class="product-price">Rs. 120 <span class="price-unit">/ 500ml</span></div>
-          </div>
-          
-          <button class="btn btn-primary btn-full btn-add-cart">
-            <span class="icon-plus">+</span> ADD TO CART
-          </button>
-          
-          <div class="product-urgency">
-            🔥 87 people ordered this today
+        <div class="stars text-accent">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Switched to QR Cola Zero and haven't looked back. Zero sugar but it actually tastes like real cola!"</p>
+      </div>
+      
+      <div class="card review-card">
+        <div class="review-header">
+          <div class="avatar bg-gradient-3">BK</div>
+          <div class="reviewer-info">
+            <h4>Bilal K. <span class="city">Lahore</span></h4>
+            <div class="verified-badge">✅ Verified Buyer</div>
           </div>
         </div>
+        <div class="stars text-accent">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"The Lemon Blast is my go-to for summer. Paired with a spicy biryani, it's just unmatched. The street-smart branding is a plus."</p>
       </div>
 
-      <!-- Card 2: Zero -->
-      <div class="card product-card" data-category="zero">
-        <div class="badge badge-dark">ZERO SUGAR</div>
-        <div class="card-image-area">
-          <div class="flavor-circle flavor-zero">
-            <div class="placeholder-can">ZERO</div>
+      <!-- Duplicated Set for Infinite Loop -->
+      <div class="card review-card">
+        <div class="review-header">
+          <div class="avatar bg-gradient-1">SM</div>
+          <div class="reviewer-info">
+            <h4>Saad M. <span class="city">Karachi</span></h4>
+            <div class="verified-badge">✅ Verified Buyer</div>
           </div>
         </div>
-        <div class="card-content">
-          <h3 class="product-title">QR Cola Zero</h3>
-          <p class="product-tagline">"Zero Sugar. Full Power."</p>
-          
-          <div class="product-meta">
-            <div class="product-rating">
-              <span class="star-icon">⭐</span> 4.9 <span class="review-count">(189 reviews)</span>
-            </div>
-            <div class="product-price">Rs. 120 <span class="price-unit">/ 500ml</span></div>
-          </div>
-          
-          <button class="btn btn-primary btn-full btn-add-cart">
-            <span class="icon-plus">+</span> ADD TO CART
-          </button>
-          
-          <div class="product-urgency">
-            🔥 112 people ordered this today
-          </div>
-        </div>
+        <div class="stars text-accent">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Finally a local brand that beats the international giants. The original flavor is crisp and the carbonation hits perfectly."</p>
       </div>
-
-      <!-- Card 3: Lemon Blast -->
-      <div class="card product-card" data-category="flavored">
-        <div class="badge badge-accent">NEW</div>
-        <div class="card-image-area">
-          <div class="flavor-circle flavor-lemon">
-            <div class="placeholder-can">LEMON</div>
+      
+      <div class="card review-card">
+        <div class="review-header">
+          <div class="avatar bg-gradient-2">FA</div>
+          <div class="reviewer-info">
+            <h4>Fatima A. <span class="city">Islamabad</span></h4>
+            <div class="verified-badge">✅ Verified Buyer</div>
           </div>
         </div>
-        <div class="card-content">
-          <h3 class="product-title">QR Cola Lemon Blast</h3>
-          <p class="product-tagline">"Hit of Citrus. Rush of Energy."</p>
-          
-          <div class="product-meta">
-            <div class="product-rating">
-              <span class="star-icon">⭐</span> 4.7 <span class="review-count">(95 reviews)</span>
-            </div>
-            <div class="product-price">Rs. 120 <span class="price-unit">/ 500ml</span></div>
-          </div>
-          
-          <button class="btn btn-primary btn-full btn-add-cart">
-            <span class="icon-plus">+</span> ADD TO CART
-          </button>
-          
-          <div class="product-urgency">
-            🔥 64 people ordered this today
-          </div>
-        </div>
+        <div class="stars text-accent">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Switched to QR Cola Zero and haven't looked back. Zero sugar but it actually tastes like real cola!"</p>
       </div>
-
-      <!-- Card 4: Berry Storm -->
-      <div class="card product-card" data-category="flavored">
-        <div class="badge badge-accent">LIMITED</div>
-        <div class="card-image-area">
-          <div class="flavor-circle flavor-berry">
-            <div class="placeholder-can">BERRY</div>
+      
+      <div class="card review-card">
+        <div class="review-header">
+          <div class="avatar bg-gradient-3">BK</div>
+          <div class="reviewer-info">
+            <h4>Bilal K. <span class="city">Lahore</span></h4>
+            <div class="verified-badge">✅ Verified Buyer</div>
           </div>
         </div>
-        <div class="card-content">
-          <h3 class="product-title">QR Cola Berry Storm</h3>
-          <p class="product-tagline">"Wild Berry. Wilder You."</p>
-          
-          <div class="product-meta">
-            <div class="product-rating">
-              <span class="star-icon">⭐</span> 4.8 <span class="review-count">(142 reviews)</span>
-            </div>
-            <div class="product-price">Rs. 120 <span class="price-unit">/ 500ml</span></div>
-          </div>
-          
-          <button class="btn btn-primary btn-full btn-add-cart">
-            <span class="icon-plus">+</span> ADD TO CART
-          </button>
-          
-          <div class="product-urgency">
-            🔥 93 people ordered this today
-          </div>
-        </div>
+        <div class="stars text-accent">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"The Lemon Blast is my go-to for summer. Paired with a spicy biryani, it's just unmatched. The street-smart branding is a plus."</p>
       </div>
-
     </div>
+
+    <!-- Row 2: Scrolls Right -->
+    <div class="marquee-track track-right" dir="rtl">
+      <!-- To scroll right, we use RTL direction and flip the children back to LTR -->
+      <div class="track-right-inner">
+        
+        <!-- Original Set -->
+        <div class="card review-card ltr-card">
+          <div class="review-header">
+            <div class="avatar bg-gradient-4">ZT</div>
+            <div class="reviewer-info">
+              <h4>Zara T. <span class="city">Rawalpindi</span></h4>
+              <div class="verified-badge">✅ Verified Buyer</div>
+            </div>
+          </div>
+          <div class="stars text-accent">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">"Aesthetic packaging, premium taste. QR Cola brings that street vibe with luxury quality. 10/10."</p>
+        </div>
+
+        <!-- Highlighted Video CTA Card -->
+        <div class="card review-card video-cta-card ltr-card">
+          <div class="video-overlay">
+            <button class="play-btn animate-pulse-glow" aria-label="Play Video">▶</button>
+            <div class="video-info">
+              <h4 class="text-white">Watch Ahmed's Story</h4>
+              <span class="video-length mono-text">2 MIN READ / WATCH</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card review-card ltr-card">
+          <div class="review-header">
+            <div class="avatar bg-gradient-1">OS</div>
+            <div class="reviewer-info">
+              <h4>Omar S. <span class="city">Faisalabad</span></h4>
+              <div class="verified-badge">✅ Verified Buyer</div>
+            </div>
+          </div>
+          <div class="stars text-accent">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">"Berry Storm is wildly good. Delivery was super fast and the cans arrived ice cold in premium packaging."</p>
+        </div>
+
+        <!-- Duplicated Set for Infinite Loop -->
+        <div class="card review-card ltr-card">
+          <div class="review-header">
+            <div class="avatar bg-gradient-4">ZT</div>
+            <div class="reviewer-info">
+              <h4>Zara T. <span class="city">Rawalpindi</span></h4>
+              <div class="verified-badge">✅ Verified Buyer</div>
+            </div>
+          </div>
+          <div class="stars text-accent">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">"Aesthetic packaging, premium taste. QR Cola brings that street vibe with luxury quality. 10/10."</p>
+        </div>
+
+        <div class="card review-card video-cta-card ltr-card">
+          <div class="video-overlay">
+            <button class="play-btn animate-pulse-glow" aria-label="Play Video">▶</button>
+            <div class="video-info">
+              <h4 class="text-white">Watch Ahmed's Story</h4>
+              <span class="video-length mono-text">2 MIN READ / WATCH</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card review-card ltr-card">
+          <div class="review-header">
+            <div class="avatar bg-gradient-1">OS</div>
+            <div class="reviewer-info">
+              <h4>Omar S. <span class="city">Faisalabad</span></h4>
+              <div class="verified-badge">✅ Verified Buyer</div>
+            </div>
+          </div>
+          <div class="stars text-accent">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">"Berry Storm is wildly good. Delivery was super fast and the cans arrived ice cold in premium packaging."</p>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>

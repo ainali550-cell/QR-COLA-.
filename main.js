@@ -1,35 +1,57 @@
-// --- Product Filter Logic ---
-const filterBtns = document.querySelectorAll('.filter-btn');
-const productCards = document.querySelectorAll('.product-card');
+// --- Animated Stats Counter on Scroll ---
+const statsBar = document.getElementById('stats-bar');
+const counters = document.querySelectorAll('.counter');
 
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // 1. Remove active class from all tabs, add to clicked tab
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+// Function to animate a single counter
+const animateCounter = (counter) => {
+  const target = parseFloat(counter.getAttribute('data-target'));
+  const decimals = parseInt(counter.getAttribute('data-decimals') || 0);
+  const duration = 2000; // 2 seconds animation
+  const frameRate = 1000 / 60; // 60 fps
+  const totalFrames = Math.round(duration / frameRate);
+  
+  let currentFrame = 0;
+  
+  const counterInterval = setInterval(() => {
+    currentFrame++;
+    // Easing function (easeOutQuad) to slow down at the end
+    const progress = currentFrame / totalFrames;
+    const easeProgress = progress * (2 - progress); 
+    
+    const currentValue = target * easeProgress;
+    
+    // Format based on decimals requested
+    if (decimals > 0) {
+      counter.innerText = currentValue.toFixed(decimals);
+    } else {
+      counter.innerText = Math.round(currentValue);
+    }
+    
+    if (currentFrame === totalFrames) {
+      clearInterval(counterInterval);
+      // Ensure exactly target at end
+      counter.innerText = target.toFixed(decimals > 0 ? decimals : 0);
+    }
+  }, frameRate);
+};
 
-    // 2. Get target filter category
-    const filterValue = btn.getAttribute('data-filter');
+// Intersection Observer to trigger when visible
+if (statsBar) {
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5 // Trigger when 50% of the bar is visible
+  };
 
-    // 3. Filter cards
-    productCards.forEach(card => {
-      const cardCategory = card.getAttribute('data-category');
-      
-      if (filterValue === 'all' || filterValue === cardCategory) {
-        // Show Card
-        card.classList.remove('hidden');
-        // Small reset hack to re-trigger layout for grid
-        card.style.position = 'relative'; 
-      } else {
-        // Hide Card
-        card.classList.add('hidden');
-        // Removes item from DOM flow while keeping it for JS to un-hide later
-        setTimeout(() => {
-          if(card.classList.contains('hidden')) {
-             card.style.position = 'absolute';
-          }
-        }, 400); // Matches CSS transition duration
+  const statsObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        counters.forEach(counter => animateCounter(counter));
+        // Stop observing once animated
+        observer.unobserve(entry.target);
       }
     });
-  });
-});
+  }, observerOptions);
+
+  statsObserver.observe(statsBar);
+}
