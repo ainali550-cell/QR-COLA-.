@@ -1,34 +1,33 @@
-// --- Scroll Animations for Benefit Rows ---
-const scrollElements = document.querySelectorAll('.scroll-animate');
+// --- Conversion Urgency Countdown Timer ---
+const countdownElement = document.getElementById('countdown-timer');
 
-if (scrollElements.length > 0) {
-  const rowObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Add visible class to trigger CSS transform/opacity
-        entry.target.classList.add('is-visible');
-        
-        // Find if this row has counters and animate them (reusing your animateCounter function)
-        const rowCounters = entry.target.querySelectorAll('.counter');
-        if (rowCounters.length > 0) {
-            rowCounters.forEach(counter => {
-                // Check a custom attribute so we don't animate twice
-                if(!counter.hasAttribute('data-animated')) {
-                    animateCounter(counter);
-                    counter.setAttribute('data-animated', 'true');
-                }
-            });
-        }
+if (countdownElement) {
+  // Set initial time (47 minutes, 32 seconds)
+  let totalSeconds = (47 * 60) + 32;
 
-        // Stop observing once it has animated
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    root: null,
-    rootMargin: '0px 0px -100px 0px', // Triggers slightly before it hits the bottom
-    threshold: 0.2 // Triggers when 20% of the element is visible
-  });
+  const updateTimer = () => {
+    // Calculate hours, minutes, seconds
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
 
-  scrollElements.forEach(el => rowObserver.observe(el));
+    // Format with leading zeros
+    const format = (num) => String(num).padStart(2, '0');
+
+    // Update DOM
+    countdownElement.innerText = `[${format(hours)}:${format(minutes)}:${format(seconds)}]`;
+
+    // Stop at zero or decrement
+    if (totalSeconds <= 0) {
+      clearInterval(timerInterval);
+      countdownElement.innerText = "[OFFER EXPIRED]";
+      countdownElement.style.color = "var(--text-muted)";
+    } else {
+      totalSeconds--;
+    }
+  };
+
+  // Run immediately, then every second
+  updateTimer();
+  const timerInterval = setInterval(updateTimer, 1000);
 }
