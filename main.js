@@ -1,57 +1,34 @@
-// --- Animated Stats Counter on Scroll ---
-const statsBar = document.getElementById('stats-bar');
-const counters = document.querySelectorAll('.counter');
+// --- Scroll Animations for Benefit Rows ---
+const scrollElements = document.querySelectorAll('.scroll-animate');
 
-// Function to animate a single counter
-const animateCounter = (counter) => {
-  const target = parseFloat(counter.getAttribute('data-target'));
-  const decimals = parseInt(counter.getAttribute('data-decimals') || 0);
-  const duration = 2000; // 2 seconds animation
-  const frameRate = 1000 / 60; // 60 fps
-  const totalFrames = Math.round(duration / frameRate);
-  
-  let currentFrame = 0;
-  
-  const counterInterval = setInterval(() => {
-    currentFrame++;
-    // Easing function (easeOutQuad) to slow down at the end
-    const progress = currentFrame / totalFrames;
-    const easeProgress = progress * (2 - progress); 
-    
-    const currentValue = target * easeProgress;
-    
-    // Format based on decimals requested
-    if (decimals > 0) {
-      counter.innerText = currentValue.toFixed(decimals);
-    } else {
-      counter.innerText = Math.round(currentValue);
-    }
-    
-    if (currentFrame === totalFrames) {
-      clearInterval(counterInterval);
-      // Ensure exactly target at end
-      counter.innerText = target.toFixed(decimals > 0 ? decimals : 0);
-    }
-  }, frameRate);
-};
-
-// Intersection Observer to trigger when visible
-if (statsBar) {
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.5 // Trigger when 50% of the bar is visible
-  };
-
-  const statsObserver = new IntersectionObserver((entries, observer) => {
+if (scrollElements.length > 0) {
+  const rowObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        counters.forEach(counter => animateCounter(counter));
-        // Stop observing once animated
+        // Add visible class to trigger CSS transform/opacity
+        entry.target.classList.add('is-visible');
+        
+        // Find if this row has counters and animate them (reusing your animateCounter function)
+        const rowCounters = entry.target.querySelectorAll('.counter');
+        if (rowCounters.length > 0) {
+            rowCounters.forEach(counter => {
+                // Check a custom attribute so we don't animate twice
+                if(!counter.hasAttribute('data-animated')) {
+                    animateCounter(counter);
+                    counter.setAttribute('data-animated', 'true');
+                }
+            });
+        }
+
+        // Stop observing once it has animated
         observer.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, {
+    root: null,
+    rootMargin: '0px 0px -100px 0px', // Triggers slightly before it hits the bottom
+    threshold: 0.2 // Triggers when 20% of the element is visible
+  });
 
-  statsObserver.observe(statsBar);
+  scrollElements.forEach(el => rowObserver.observe(el));
 }
