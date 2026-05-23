@@ -1,13 +1,35 @@
-// Parallax Effect for Product Image
-const productParallax = document.getElementById('parallax-product');
+// --- Product Filter Logic ---
+const filterBtns = document.querySelectorAll('.filter-btn');
+const productCards = document.querySelectorAll('.product-card');
 
-window.addEventListener('scroll', () => {
-  if (productParallax) {
-    // Only animate parallax if the hero section is somewhat in view to save performance
-    if (window.scrollY < window.innerHeight) {
-      // Moves opposite to scroll direction at 20% speed
-      const scrollDist = window.scrollY;
-      productParallax.style.transform = `translateY(${scrollDist * -0.2}px)`;
-    }
-  }
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // 1. Remove active class from all tabs, add to clicked tab
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // 2. Get target filter category
+    const filterValue = btn.getAttribute('data-filter');
+
+    // 3. Filter cards
+    productCards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category');
+      
+      if (filterValue === 'all' || filterValue === cardCategory) {
+        // Show Card
+        card.classList.remove('hidden');
+        // Small reset hack to re-trigger layout for grid
+        card.style.position = 'relative'; 
+      } else {
+        // Hide Card
+        card.classList.add('hidden');
+        // Removes item from DOM flow while keeping it for JS to un-hide later
+        setTimeout(() => {
+          if(card.classList.contains('hidden')) {
+             card.style.position = 'absolute';
+          }
+        }, 400); // Matches CSS transition duration
+      }
+    });
+  });
 });

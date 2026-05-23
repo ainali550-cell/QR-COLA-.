@@ -1,70 +1,139 @@
-<!-- Hero Section -->
-<section id="home" class="hero-section">
-  <!-- Radial burst background behind everything -->
-  <div class="hero-bg-burst"></div>
-
-  <div class="container hero-grid">
+<section id="products" class="products-section section-diagonal">
+  <div class="container">
     
-    <!-- Left Column: Copy & Actions -->
-    <div class="hero-content">
-      <span class="eyebrow mono-text text-accent">Pakistan's Boldest Cold Drink</span>
-      <h1 class="hero-title">NOT JUST A COLA.<br>IT'S A <span class="text-primary">STATEMENT.</span></h1>
-      <p class="hero-subtitle">QR Cola hits different. Real flavor. Zero compromise. The drink that matches your energy.</p>
-      
-      <div class="hero-ctas">
-        <a href="#shop" class="btn btn-primary btn-large btn-shimmer">Shop Now</a>
-        <button class="btn btn-ghost btn-video">Watch Our Story <span class="play-icon">▶</span></button>
-      </div>
-      
-      <div class="social-proof">
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-        <p class="proof-text">Loved by <strong>50,000+</strong> customers across Pakistan</p>
-      </div>
+    <!-- Section Header -->
+    <div class="section-header text-center mb-lg">
+      <span class="label">THE LINEUP</span>
+      <h2>PICK YOUR FLAVOR. <span class="text-primary">OWN YOUR VIBE.</span></h2>
     </div>
 
-    <!-- Right Column: Visual -->
-    <div class="hero-visual">
-      <div id="parallax-product" class="product-wrapper">
-        <!-- Ice & Splashes -->
-        <div class="ice-cube ice-1"></div>
-        <div class="ice-cube ice-2"></div>
-        <div class="splash splash-1"></div>
-        <div class="splash splash-2"></div>
-        
-        <!-- CSS Drawn QR Cola Can -->
-        <div class="css-can animate-float-rotate">
-          <div class="can-top"></div>
-          <div class="can-body">
-            <div class="can-logo">
-               <svg viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M14 0L0 18H10L8 32L24 12H13L14 0Z" fill="var(--secondary)"/>
-               </svg>
-               QR COLA
-            </div>
-            <div class="can-barcode"></div>
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <button class="filter-btn active" data-filter="all">ALL</button>
+      <button class="filter-btn" data-filter="classic">CLASSIC</button>
+      <button class="filter-btn" data-filter="zero">ZERO SUGAR</button>
+      <button class="filter-btn" data-filter="flavored">FLAVORED</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="product-grid">
+      
+      <!-- Card 1: Original -->
+      <div class="card product-card" data-category="classic">
+        <div class="badge badge-primary">BESTSELLER</div>
+        <div class="card-image-area">
+          <div class="flavor-circle flavor-original">
+            <div class="placeholder-can">QR</div>
           </div>
-          <div class="can-bottom"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="product-title">QR Cola Original</h3>
+          <p class="product-tagline">"The Classic Knockout"</p>
+          
+          <div class="product-meta">
+            <div class="product-rating">
+              <span class="star-icon">⭐</span> 4.8 <span class="review-count">(234 reviews)</span>
+            </div>
+            <div class="product-price">Rs. 120 <span class="price-unit">/ 500ml</span></div>
+          </div>
+          
+          <button class="btn btn-primary btn-full btn-add-cart">
+            <span class="icon-plus">+</span> ADD TO CART
+          </button>
+          
+          <div class="product-urgency">
+            🔥 87 people ordered this today
+          </div>
         </div>
       </div>
-    </div>
 
+      <!-- Card 2: Zero -->
+      <div class="card product-card" data-category="zero">
+        <div class="badge badge-dark">ZERO SUGAR</div>
+        <div class="card-image-area">
+          <div class="flavor-circle flavor-zero">
+            <div class="placeholder-can">ZERO</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="product-title">QR Cola Zero</h3>
+          <p class="product-tagline">"Zero Sugar. Full Power."</p>
+          
+          <div class="product-meta">
+            <div class="product-rating">
+              <span class="star-icon">⭐</span> 4.9 <span class="review-count">(189 reviews)</span>
+            </div>
+            <div class="product-price">Rs. 120 <span class="price-unit">/ 500ml</span></div>
+          </div>
+          
+          <button class="btn btn-primary btn-full btn-add-cart">
+            <span class="icon-plus">+</span> ADD TO CART
+          </button>
+          
+          <div class="product-urgency">
+            🔥 112 people ordered this today
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Lemon Blast -->
+      <div class="card product-card" data-category="flavored">
+        <div class="badge badge-accent">NEW</div>
+        <div class="card-image-area">
+          <div class="flavor-circle flavor-lemon">
+            <div class="placeholder-can">LEMON</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="product-title">QR Cola Lemon Blast</h3>
+          <p class="product-tagline">"Hit of Citrus. Rush of Energy."</p>
+          
+          <div class="product-meta">
+            <div class="product-rating">
+              <span class="star-icon">⭐</span> 4.7 <span class="review-count">(95 reviews)</span>
+            </div>
+            <div class="product-price">Rs. 120 <span class="price-unit">/ 500ml</span></div>
+          </div>
+          
+          <button class="btn btn-primary btn-full btn-add-cart">
+            <span class="icon-plus">+</span> ADD TO CART
+          </button>
+          
+          <div class="product-urgency">
+            🔥 64 people ordered this today
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Berry Storm -->
+      <div class="card product-card" data-category="flavored">
+        <div class="badge badge-accent">LIMITED</div>
+        <div class="card-image-area">
+          <div class="flavor-circle flavor-berry">
+            <div class="placeholder-can">BERRY</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="product-title">QR Cola Berry Storm</h3>
+          <p class="product-tagline">"Wild Berry. Wilder You."</p>
+          
+          <div class="product-meta">
+            <div class="product-rating">
+              <span class="star-icon">⭐</span> 4.8 <span class="review-count">(142 reviews)</span>
+            </div>
+            <div class="product-price">Rs. 120 <span class="price-unit">/ 500ml</span></div>
+          </div>
+          
+          <button class="btn btn-primary btn-full btn-add-cart">
+            <span class="icon-plus">+</span> ADD TO CART
+          </button>
+          
+          <div class="product-urgency">
+            🔥 93 people ordered this today
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
-
-<!-- Trust Signals Strip (Below Fold) -->
-<div class="trust-strip">
-  <div class="trust-track">
-    <!-- Set 1 -->
-    <div class="trust-item">🚚 Fast Delivery</div>
-    <div class="trust-item">🧊 Always Ice Cold</div>
-    <div class="trust-item">✅ 100% Halal</div>
-    <div class="trust-item">🇵🇰 Made in Pakistan</div>
-    <div class="trust-item">🔒 Secure Checkout</div>
-    <!-- Set 2 (Duplicated for seamless loop) -->
-    <div class="trust-item">🚚 Fast Delivery</div>
-    <div class="trust-item">🧊 Always Ice Cold</div>
-    <div class="trust-item">✅ 100% Halal</div>
-    <div class="trust-item">🇵🇰 Made in Pakistan</div>
-    <div class="trust-item">🔒 Secure Checkout</div>
-  </div>
-</div>
