@@ -1,56 +1,70 @@
-<!-- Announcement Bar -->
-<div id="announcement-bar" class="announcement-bar">
-  <div class="marquee-container">
-    <div class="marquee-content mono-text">
-      <span>⚡ FREE DELIVERY ON ORDERS OVER RS. 1,500 — USE CODE: QRCOLA10 ⚡</span>
-      <span>⚡ FREE DELIVERY ON ORDERS OVER RS. 1,500 — USE CODE: QRCOLA10 ⚡</span>
-      <span>⚡ FREE DELIVERY ON ORDERS OVER RS. 1,500 — USE CODE: QRCOLA10 ⚡</span>
-    </div>
-  </div>
-  <button id="close-announcement" class="btn-close" aria-label="Close Announcement">&times;</button>
-</div>
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+  <!-- Radial burst background behind everything -->
+  <div class="hero-bg-burst"></div>
 
-<!-- Main Navigation -->
-<header id="navbar" class="navbar">
-  <div class="container nav-container">
+  <div class="container hero-grid">
     
-    <!-- Logo -->
-    <a href="#home" class="logo">
-      <svg class="logo-icon" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14 0L0 18H10L8 32L24 12H13L14 0Z" fill="var(--accent)"/>
-      </svg>
-      <span class="logo-text">QR COLA</span>
-    </a>
-
-    <!-- Desktop Nav Links -->
-    <ul class="nav-links desktop-nav">
-      <li><a href="#home" class="nav-link">Home</a></li>
-      <li><a href="#products" class="nav-link">Products</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#why-qr" class="nav-link">Why QR</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
-
-    <!-- CTA & Hamburger -->
-    <div class="nav-actions">
-      <a href="#order" class="btn btn-nav-cta">Order Now</a>
+    <!-- Left Column: Copy & Actions -->
+    <div class="hero-content">
+      <span class="eyebrow mono-text text-accent">Pakistan's Boldest Cold Drink</span>
+      <h1 class="hero-title">NOT JUST A COLA.<br>IT'S A <span class="text-primary">STATEMENT.</span></h1>
+      <p class="hero-subtitle">QR Cola hits different. Real flavor. Zero compromise. The drink that matches your energy.</p>
       
-      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
+      <div class="hero-ctas">
+        <a href="#shop" class="btn btn-primary btn-large btn-shimmer">Shop Now</a>
+        <button class="btn btn-ghost btn-video">Watch Our Story <span class="play-icon">▶</span></button>
+      </div>
+      
+      <div class="social-proof">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="proof-text">Loved by <strong>50,000+</strong> customers across Pakistan</p>
+      </div>
     </div>
-  </div>
 
-  <!-- Mobile Full-Screen Menu -->
-  <nav id="mobile-menu" class="mobile-menu">
-    <ul class="mobile-nav-links">
-      <li style="--delay: 0.1s"><a href="#home" class="mobile-link">Home</a></li>
-      <li style="--delay: 0.2s"><a href="#products" class="mobile-link">Products</a></li>
-      <li style="--delay: 0.3s"><a href="#about" class="mobile-link">About</a></li>
-      <li style="--delay: 0.4s"><a href="#why-qr" class="mobile-link">Why QR</a></li>
-      <li style="--delay: 0.5s"><a href="#contact" class="mobile-link">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+    <!-- Right Column: Visual -->
+    <div class="hero-visual">
+      <div id="parallax-product" class="product-wrapper">
+        <!-- Ice & Splashes -->
+        <div class="ice-cube ice-1"></div>
+        <div class="ice-cube ice-2"></div>
+        <div class="splash splash-1"></div>
+        <div class="splash splash-2"></div>
+        
+        <!-- CSS Drawn QR Cola Can -->
+        <div class="css-can animate-float-rotate">
+          <div class="can-top"></div>
+          <div class="can-body">
+            <div class="can-logo">
+               <svg viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 0L0 18H10L8 32L24 12H13L14 0Z" fill="var(--secondary)"/>
+               </svg>
+               QR COLA
+            </div>
+            <div class="can-barcode"></div>
+          </div>
+          <div class="can-bottom"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Trust Signals Strip (Below Fold) -->
+<div class="trust-strip">
+  <div class="trust-track">
+    <!-- Set 1 -->
+    <div class="trust-item">🚚 Fast Delivery</div>
+    <div class="trust-item">🧊 Always Ice Cold</div>
+    <div class="trust-item">✅ 100% Halal</div>
+    <div class="trust-item">🇵🇰 Made in Pakistan</div>
+    <div class="trust-item">🔒 Secure Checkout</div>
+    <!-- Set 2 (Duplicated for seamless loop) -->
+    <div class="trust-item">🚚 Fast Delivery</div>
+    <div class="trust-item">🧊 Always Ice Cold</div>
+    <div class="trust-item">✅ 100% Halal</div>
+    <div class="trust-item">🇵🇰 Made in Pakistan</div>
+    <div class="trust-item">🔒 Secure Checkout</div>
+  </div>
+</div>

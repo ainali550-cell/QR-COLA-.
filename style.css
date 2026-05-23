@@ -1,247 +1,328 @@
 /* ==========================================================================
-   NAVIGATION & ANNOUNCEMENT BAR
+   HERO SECTION & TRUST STRIP
    ========================================================================== */
 
-/* --- Announcement Bar --- */
-.announcement-bar {
+.hero-section {
   position: relative;
-  background-color: var(--primary);
-  color: var(--text-primary);
-  height: 40px;
+  min-height: calc(100vh - 80px); /* Adjusts for sticky nav */
   display: flex;
   align-items: center;
   overflow: hidden;
-  z-index: 1000;
-  transition: height 0.3s ease, opacity 0.3s ease;
+  padding: var(--space-lg) 0;
 }
 
-.announcement-bar.hidden {
-  height: 0;
-  opacity: 0;
-  overflow: hidden;
-}
-
-.marquee-container {
-  flex-grow: 1;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.marquee-content {
-  display: inline-block;
-  animation: marquee 20s linear infinite;
-  color: var(--text-primary); /* Overrides mono-text accent color */
-}
-
-.marquee-content span {
-  padding-right: 50px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.btn-close {
-  background: transparent;
-  border: none;
-  color: var(--text-primary);
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0 var(--space-sm);
+/* Background Burst */
+.hero-bg-burst {
   position: absolute;
-  right: 0;
-  z-index: 2;
-  background-color: var(--primary); /* Blocks marquee text from bleeding behind X */
+  top: 50%;
+  right: 15%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(232, 0, 29, 0.25) 0%, rgba(13, 13, 13, 0) 70%);
+  transform: translateY(-50%);
+  z-index: 0;
+  pointer-events: none;
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* --- Header / Navbar Base --- */
-.navbar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 80px;
-  background-color: transparent;
-  transition: background-color 0.4s ease, box-shadow 0.4s ease;
-  z-index: 999;
-}
-
-/* Scrolled State triggered by JS */
-.navbar.nav-scrolled {
-  background-color: var(--secondary);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-lg);
   align-items: center;
-  height: 100%;
+  position: relative;
+  z-index: 2;
 }
 
-/* --- Logo --- */
-.logo {
+/* --- Hero Left: Copy --- */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.eyebrow {
+  margin-bottom: var(--space-xs);
+  letter-spacing: 2px;
+}
+
+.hero-title {
+  margin-bottom: var(--space-sm);
+  /* Slide in left animation */
+  animation: slideInLeft 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.125rem, 1.5vw, 1.5rem);
+  max-width: 550px;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  /* Fade in with 0.6s delay */
+  animation: fadeIn 0.6s ease both;
+  animation-delay: 0.6s;
+}
+
+/* CTAs */
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+  /* Bounce in with 0.8s delay */
+  animation: bounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  animation-delay: 0.8s;
+}
+
+.btn-large {
+  padding: 18px 48px;
+  font-size: 1.75rem;
+}
+
+/* Gold Shimmer Hover */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.6), transparent);
+  transform: skewX(-25deg);
+  transition: 0.5s;
+}
+
+.btn-shimmer:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.btn-shimmer:hover::after {
+  left: 150%;
+  transition: 0.6s ease-in-out;
+}
+
+.btn-video {
+  font-size: 1.25rem;
+  padding: 18px 0;
+}
+.play-icon { font-size: 0.9em; margin-left: 5px; }
+
+/* Social Proof */
+.social-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  animation: fadeIn 0.6s ease both;
+  animation-delay: 1s;
+}
+
+.stars {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.proof-text {
+  font-size: 0.9rem;
+  margin: 0;
+}
+.proof-text strong { color: var(--text-primary); }
+
+/* --- Hero Right: Visual & CSS Can --- */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  /* Zoom in right animation */
+  animation: zoomInRight 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+  animation-delay: 0.5s;
+}
+
+.product-wrapper {
+  position: relative;
+  will-change: transform;
+}
+
+/* CSS Drawn QR Cola Can */
+.css-can {
+  width: 220px;
+  height: 440px;
+  position: relative;
+  z-index: 5;
+  filter: drop-shadow(20px 20px 30px rgba(0,0,0,0.8));
+}
+
+.can-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #5A000A 0%, #E8001D 30%, #FF1A38 50%, #E8001D 70%, #3D0006 100%);
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.can-top, .can-bottom {
+  position: absolute;
+  left: 3%;
+  width: 94%;
+  height: 30px;
+  background: linear-gradient(90deg, #666 0%, #ddd 50%, #444 100%);
+  border-radius: 50%;
+  z-index: 6;
+}
+
+.can-top { top: -15px; border-bottom: 2px solid rgba(0,0,0,0.3); }
+.can-bottom { bottom: -15px; border-top: 2px solid rgba(0,0,0,0.5); }
+
+/* Label inside Can */
+.can-logo {
+  transform: rotate(-90deg);
+  font-family: var(--font-heading);
+  font-size: 6rem;
+  color: var(--secondary);
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
-  z-index: 1001; /* Keeps logo above mobile menu */
-}
-
-.logo-icon {
-  width: 20px;
-  height: auto;
-  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
-}
-
-.logo-text {
-  font-family: var(--font-heading);
-  font-size: 2.5rem;
-  color: var(--text-primary);
-  letter-spacing: 2px;
+  white-space: nowrap;
   line-height: 1;
-  margin-top: 5px; /* Visual alignment for Bebas Neue */
+  text-shadow: 2px 2px 0px rgba(255,255,255,0.1);
 }
 
-/* --- Desktop Navigation --- */
-.desktop-nav {
-  display: flex;
-  list-style: none;
-  gap: var(--space-md);
-}
+.can-logo svg { width: 50px; }
 
-.nav-link {
-  font-family: var(--font-accent);
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  text-transform: uppercase;
-  position: relative;
-  padding: 5px 0;
-}
-
-/* Sliding Underline Animation */
-.nav-link::after {
-  content: '';
+/* Particles / Ice Cubes */
+.ice-cube {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--primary);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+  z-index: 10;
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-  transform: scaleX(1);
-  transform-origin: left;
+.ice-1 { top: 10%; left: -20%; animation: float 4s ease-in-out infinite reverse; transform: rotate(15deg); }
+.ice-2 { bottom: 20%; right: -30%; animation: float 5s ease-in-out infinite; transform: rotate(-25deg); }
+
+.splash {
+  position: absolute;
+  background: var(--primary);
+  border-radius: 50%;
+  filter: blur(2px);
+  z-index: 4;
 }
 
-/* --- CTA & Actions --- */
-.nav-actions {
+.splash-1 { width: 20px; height: 20px; top: 30%; right: -10%; animation: float 3s infinite; }
+.splash-2 { width: 12px; height: 12px; bottom: 40%; left: -15%; animation: float 4s infinite reverse; }
+
+/* Product Float & Rotate Keyframes */
+.animate-float-rotate {
+  animation: floatRotate 6s ease-in-out infinite;
+}
+
+@keyframes floatRotate {
+  0% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-25px) rotate(4deg); }
+  100% { transform: translateY(0) rotate(-2deg); }
+}
+
+/* --- Load Animations --- */
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  70% { opacity: 1; transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes zoomInRight {
+  0% { opacity: 0; transform: scale(0.8) translateX(50px); }
+  100% { opacity: 1; transform: scale(1) translateX(0); }
+}
+
+/* --- Trust Signals Strip --- */
+.trust-strip {
+  background-color: var(--bg-card);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 15px 0;
+  overflow: hidden;
+  display: flex;
+}
+
+.trust-track {
+  display: flex;
+  gap: 4rem;
+  white-space: nowrap;
+  animation: scrollTrust 25s linear infinite;
+}
+
+.trust-item {
+  font-family: var(--font-accent);
+  font-size: 1rem;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
-  gap: var(--space-md);
-  z-index: 1001;
+  gap: 10px;
 }
 
-.btn-nav-cta {
-  background-color: var(--primary);
-  color: var(--text-primary);
-  border: 2px solid var(--accent);
-  padding: 0.5rem 1.5rem;
-  font-size: 1.25rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+@keyframes scrollTrust {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 2rem)); /* Scroll half the duplicated track */ }
 }
 
-.btn-nav-cta:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-}
-
-/* --- Hamburger Menu --- */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 20px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-.hamburger .bar {
-  width: 100%;
-  height: 2px;
-  background-color: var(--text-primary);
-  transition: all 0.3s ease;
-  transform-origin: left;
-}
-
-/* Hamburger to 'X' Animation */
-.hamburger.is-active .bar:nth-child(1) { transform: rotate(45deg); }
-.hamburger.is-active .bar:nth-child(2) { opacity: 0; }
-.hamburger.is-active .bar:nth-child(3) { transform: rotate(-45deg); }
-
-/* --- Mobile Menu --- */
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(13, 13, 13, 0.98); /* Deep dark background */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateX(100%);
-  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-  z-index: 1000;
-}
-
-.mobile-menu.is-open {
-  transform: translateX(0);
-}
-
-.mobile-nav-links {
-  list-style: none;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.mobile-link {
-  font-family: var(--font-heading);
-  font-size: 3.5rem;
-  color: var(--text-primary);
-  text-transform: uppercase;
-  display: block;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s;
-}
-
-.mobile-link:hover {
-  color: var(--accent);
-}
-
-/* Staggered animation when menu is open */
-.mobile-menu.is-open .mobile-link {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: var(--delay);
-}
-
-/* --- Responsive Adjustments --- */
+/* --- Mobile Responsiveness --- */
 @media (max-width: 992px) {
-  .desktop-nav { display: none; }
-  .hamburger { display: flex; }
-  .btn-nav-cta { display: none; /* Can be moved into mobile menu if desired */ }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-md);
+  }
+
+  .hero-content {
+    align-items: center;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+  }
+
+  .hero-bg-burst {
+    top: 60%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 100vw;
+    height: 100vw;
+  }
+
+  .hero-visual {
+    height: 450px;
+  }
+
+  .css-can {
+    width: 160px;
+    height: 320px;
+  }
+
+  .can-logo {
+    font-size: 4rem;
+  }
 }
