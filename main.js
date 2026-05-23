@@ -1,33 +1,43 @@
-// --- Conversion Urgency Countdown Timer ---
-const countdownElement = document.getElementById('countdown-timer');
+// --- SVG Timeline Scroll Animation ---
+const timelineSection = document.getElementById('story-timeline');
+const timelinePath = document.getElementById('timeline-path');
+const timelineItems = document.querySelectorAll('.timeline-item');
 
-if (countdownElement) {
-  // Set initial time (47 minutes, 32 seconds)
-  let totalSeconds = (47 * 60) + 32;
+if (timelineSection && timelinePath) {
+  // 1. Get length of SVG path and set initial hidden state
+  const pathLength = timelinePath.getTotalLength();
+  
+  // Set up the dashed array to be exactly the length of the path
+  timelinePath.style.strokeDasharray = pathLength;
+  // Offset it entirely so it's "invisible" at start
+  timelinePath.style.strokeDashoffset = pathLength;
+  // Apply transition for smooth drawing
+  timelinePath.style.transition = 'stroke-dashoffset 2s ease-in-out';
 
-  const updateTimer = () => {
-    // Calculate hours, minutes, seconds
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
+  // 2. Intersection Observer to trigger drawing
+  const timelineObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        
+        // Draw the line by setting offset back to 0
+        timelinePath.style.strokeDashoffset = '0';
+        
+        // Stagger the appearance of the text nodes mapping to the line draw
+        timelineItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('is-visible');
+          }, index * 400); // 400ms delay between each node appearing
+        });
 
-    // Format with leading zeros
-    const format = (num) => String(num).padStart(2, '0');
+        // Stop observing once animation has run
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -20% 0px', // Triggers when the element is 20% up from the bottom of the screen
+    threshold: 0.2
+  });
 
-    // Update DOM
-    countdownElement.innerText = `[${format(hours)}:${format(minutes)}:${format(seconds)}]`;
-
-    // Stop at zero or decrement
-    if (totalSeconds <= 0) {
-      clearInterval(timerInterval);
-      countdownElement.innerText = "[OFFER EXPIRED]";
-      countdownElement.style.color = "var(--text-muted)";
-    } else {
-      totalSeconds--;
-    }
-  };
-
-  // Run immediately, then every second
-  updateTimer();
-  const timerInterval = setInterval(updateTimer, 1000);
+  timelineObserver.observe(timelineSection);
 }

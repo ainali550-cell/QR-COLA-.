@@ -1,190 +1,234 @@
 /* ==========================================================================
-   CONVERSION / ORDER SECTION
+   BRAND STORY SECTION
    ========================================================================== */
 
-.conversion-section {
-  position: relative;
+.story-section {
   padding: var(--space-xl) 0;
-  background: var(--gradient-hero);
+  background-color: var(--bg-dark);
+  position: relative;
   overflow: hidden;
-  clip-path: polygon(0 5vw, 100% 0, 100% 100%, 0 100%);
-  margin-top: -5vw;
-  z-index: 12;
 }
 
-/* Subtle texture overlay for the red background */
-.conversion-section::before {
+/* Subtle background glow behind the text */
+.story-section::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='%23000' fill-opacity='0.1'/%3E%3C/svg%3E");
+  top: 20%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(232, 0, 29, 0.08) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 0;
 }
 
-.conversion-section .subtitle {
-  font-size: 1.25rem;
-  opacity: 0.9;
-}
-
-.text-secondary-glow {
-  color: var(--secondary);
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-}
-
-/* --- Pricing Grid --- */
-.pricing-grid {
+.story-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
   align-items: center;
   position: relative;
   z-index: 2;
 }
 
-.pricing-card {
-  background: rgba(10, 10, 10, 0.85); /* Deep dark to contrast red */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: var(--space-lg) var(--space-md);
-  text-align: center;
+/* --- Left: Content --- */
+.story-content {
+  max-width: 550px;
+}
+
+.story-title {
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-md);
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1;
+}
+
+.story-body {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: var(--space-lg);
+}
+
+.story-cta {
+  font-family: var(--font-accent);
+  font-size: 1.1rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 5px;
+  transition: var(--transition-fast);
+}
+
+/* Gold Underline that expands on hover */
+.story-cta::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-gold);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-origin: right;
+}
+
+.story-cta:hover {
+  color: var(--text-primary);
+}
+
+.story-cta:hover::after {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+/* --- Right: Visual Timeline --- */
+.story-visual {
+  position: relative;
+  height: 500px; /* Fixed height to match SVG */
   display: flex;
-  flex-direction: column;
 }
 
-/* Featured Card (Party Pack) is slightly larger and has gold accents */
-.featured-card {
-  background: rgba(13, 13, 13, 0.95);
-  transform: scale(1.05);
-  border: 2px solid var(--accent);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.15);
-  z-index: 3;
-}
-
-.featured-card:hover {
-  transform: scale(1.08) translateY(-10px);
-}
-
-.pricing-badge {
+.timeline-svg {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Centers the badge on the top border */
-  font-size: 0.85rem;
-  padding: 6px 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
-.pack-title {
-  font-size: 2.5rem;
-  margin-top: var(--space-sm);
-  margin-bottom: var(--space-md);
+.path-bg {
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 2px;
+  fill: none;
 }
 
-.pack-features {
-  list-style: none;
-  margin-bottom: var(--space-lg);
-  flex-grow: 1;
+.path-animate {
+  stroke: var(--primary);
+  stroke-width: 4px;
+  fill: none;
+  stroke-linecap: round;
+  /* Stroke properties are controlled dynamically by JS */
 }
 
-.pack-features li {
+/* Timeline Nodes Container */
+.timeline-nodes {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px 0; /* Align with SVG path M/L points */
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Triggered by JS */
+.timeline-item.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Exact alignment with the x=20 SVG coordinate */
+.node-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--bg-dark);
+  border: 3px solid var(--text-muted);
+  border-radius: 50%;
+  margin-left: 12px; /* Shifts dot perfectly over the line */
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+
+/* Turns primary red when activated */
+.timeline-item.is-visible .node-dot {
+  border-color: var(--primary);
+  background: var(--primary);
+  box-shadow: 0 0 15px rgba(232, 0, 29, 0.6);
+}
+
+.node-pulse {
+  animation: pulse-glow-red 2s infinite;
+}
+
+@keyframes pulse-glow-red {
+  0% { box-shadow: 0 0 0 0 rgba(232, 0, 29, 0.6); }
+  70% { box-shadow: 0 0 0 15px rgba(232, 0, 29, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 0, 29, 0); }
+}
+
+.node-content {
+  background: rgba(26, 26, 26, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 10px 20px;
+  border-radius: 4px;
+  border-left: 2px solid transparent;
+  transition: border-color 0.4s ease;
+}
+
+.timeline-item.is-visible .node-content {
+  border-left-color: var(--primary);
+}
+
+.node-year {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.timeline-item.is-visible .node-year {
+  color: var(--accent); /* Highlights year on reveal */
+}
+
+.node-text {
   font-size: 1rem;
   color: var(--text-muted);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.icon-check {
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.highlight-feature {
-  color: var(--accent) !important;
-  font-weight: 700;
-}
-
-.pack-price {
-  font-family: var(--font-heading);
-  font-size: 4rem;
-  line-height: 1;
-  color: var(--text-primary);
-  margin-bottom: var(--space-md);
-}
-
-.currency {
-  font-size: 1.5rem;
-  vertical-align: super;
-  color: var(--text-muted);
-}
-
-.border-white { border: 1px solid rgba(255,255,255,0.2); }
-
-/* --- Urgency & Trust Elements --- */
-.urgency-container {
-  background: rgba(0, 0, 0, 0.6);
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 50px;
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-
-.urgency-text {
-  font-family: var(--font-accent);
-  font-size: 0.9rem;
-  color: var(--text-primary);
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.countdown-clock {
-  color: var(--accent);
-  font-size: 1.1rem;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-}
-
-.trust-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  position: relative;
-  z-index: 2;
-}
-
-.trust-badge-item {
+  margin: 0;
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 992px) {
-  .pricing-grid {
+  .story-grid {
     grid-template-columns: 1fr;
-    max-width: 400px;
-    margin: 0 auto var(--space-lg) auto;
+    gap: var(--space-lg);
   }
   
-  .featured-card {
-    transform: scale(1);
+  .story-title {
+    font-size: clamp(36px, 8vw, 56px);
   }
-  
-  .featured-card:hover {
-    transform: translateY(-5px);
-  }
+}
 
-  .urgency-text {
-    flex-direction: column;
-    gap: 5px;
+@media (max-width: 576px) {
+  .story-visual {
+    height: 450px;
+  }
+  
+  .timeline-item {
+    gap: 15px;
+  }
+  
+  .node-dot {
+    margin-left: 14px;
+  }
+  
+  .node-content {
+    padding: 8px 15px;
+  }
+  
+  .node-text {
+    font-size: 0.9rem;
   }
 }
