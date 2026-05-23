@@ -1,0 +1,392 @@
+/* ==========================================================================
+   QR COLA — BRAND DESIGN SYSTEM & STYLESHEET
+   Personality: Bold, rebellious, energetic, youthful, premium street-smart
+   ========================================================================== */
+
+/* --- 1. IMPORTS & FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* --- 2. CSS VARIABLES (DESIGN TOKENS) --- */
+:root {
+  /* Brand Colors */
+  --primary: #E8001D;         /* QR Red — dominant brand color */
+  --secondary: #0A0A0A;       /* Deep Black — luxury contrast */
+  --accent: #FFD700;          /* Electric Gold — CTA highlight */
+  
+  /* Backgrounds */
+  --bg-dark: #0D0D0D;         /* Near-black background */
+  --bg-card: #1A1A1A;         /* Card surfaces */
+  --bg-glass: rgba(26, 26, 26, 0.4); /* For backdrop filters */
+  
+  /* Typography Colors */
+  --text-primary: #FFFFFF;    /* Primary text */
+  --text-muted: #999999;      /* Secondary text */
+  
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #E8001D 0%, #8B0000 50%, #0A0A0A 100%);
+  --gradient-gold: linear-gradient(90deg, #FFD700, #FF8C00);
+  
+  /* Typography Families */
+  --font-heading: 'Bebas Neue', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-accent: 'Space Mono', monospace;
+
+  /* Spacing System */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* Animation Timings */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-smooth: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- 3. CSS RESETS & BASE STYLES --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--text-primary);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B30015;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --- 4. TYPOGRAPHY SCALE --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 0.9;
+  margin-bottom: var(--space-sm);
+}
+
+/* Aggressive Sizing: H1 scales from 42px on mobile to 120px on desktop */
+h1 {
+  font-size: clamp(42px, 8vw, 120px);
+  letter-spacing: 2px;
+}
+
+h2 {
+  font-size: clamp(36px, 6vw, 86px);
+  letter-spacing: 1.5px;
+}
+
+h3 {
+  font-size: clamp(28px, 4vw, 64px);
+  letter-spacing: 1px;
+}
+
+h4 { font-size: 2.5rem; }
+h5 { font-size: 2rem; }
+h6 { font-size: 1.5rem; }
+
+p {
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+/* Accent Labels */
+.label, .mono-text {
+  font-family: var(--font-accent);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+}
+
+/* Text Utilities */
+.text-primary { color: var(--primary); }
+.text-accent { color: var(--accent); }
+.text-white { color: var(--text-primary); }
+
+.text-gradient {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- 5. LAYOUTS & BACKGROUNDS --- */
+
+/* Hero Section with Grain/Noise Overlay */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-lg);
+  background: var(--gradient-hero);
+  overflow: hidden;
+}
+
+/* CSS-only SVG Noise Filter */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 2; /* Keeps content above noise */
+}
+
+/* Sharp Diagonal Section Cuts */
+.section-diagonal {
+  position: relative;
+  padding: var(--space-xl) var(--space-lg);
+  background-color: var(--secondary);
+  clip-path: polygon(0 0, 100% 5vw, 100% 100%, 0 calc(100% - 5vw));
+  margin-top: -5vw; /* Pulls section up to overlap */
+  z-index: 10;
+}
+
+.section-diagonal-reverse {
+  position: relative;
+  padding: var(--space-xl) var(--space-lg);
+  background-color: var(--bg-card);
+  clip-path: polygon(0 5vw, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  margin-top: -5vw;
+  z-index: 11;
+}
+
+/* --- 6. COMPONENTS --- */
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  padding: 0.75rem 2.5rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 0; /* Brutalist/Street look */
+  text-transform: uppercase;
+  transition: var(--transition-bounce);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Active State (Micro-animation) */
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--text-primary);
+  box-shadow: 0 4px 15px rgba(232, 0, 29, 0.3);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  background-color: #FF0A2A;
+  box-shadow: 0 8px 25px rgba(232, 0, 29, 0.6);
+  transform: translateY(-4px);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background-color: var(--secondary);
+  color: var(--text-primary);
+  border: 2px solid var(--text-muted);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-primary);
+  background-color: var(--text-primary);
+  color: var(--secondary);
+  transform: translateY(-4px);
+}
+
+/* Ghost Button */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--accent);
+  padding: 0.75rem 0;
+  font-family: var(--font-accent);
+  font-size: 1rem;
+}
+
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  bottom: 5px; left: 0; width: 0%; height: 2px;
+  background: var(--gradient-gold);
+  transition: var(--transition-smooth);
+}
+
+.btn-ghost:hover::after {
+  width: 100%;
+}
+
+/* Glassmorphism Cards */
+.card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: var(--space-md);
+  border-radius: 4px; /* Slight rounding for premium feel */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card Micro-animation on Hover */
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(232, 0, 29, 0.5); /* QR Red tint on border */
+  box-shadow: 0 20px 40px rgba(232, 0, 29, 0.15);
+}
+
+/* Glitch/Accent corner on Cards */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 30px; height: 30px;
+  background: var(--primary);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  opacity: 0;
+  transition: var(--transition-fast);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card-title {
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.card-body {
+  color: var(--text-muted);
+}
+
+/* --- 7. UTILITY CLASSES --- */
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mt-lg { margin-top: var(--space-lg); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.text-center { text-align: center; }
+
+/* --- 8. ANIMATIONS & KEYFRAMES --- */
+
+/* Floating animation for hero graphics / cans */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Pulse glow for premium accents */
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+/* Staggered slide-in for lists/cards */
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Add delays for stagger effect */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
