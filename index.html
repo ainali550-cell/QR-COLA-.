@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Cola - Contact</title>
+    <title>QR Cola - Footer</title>
     <style>
         /* --- Base & Reset --- */
         * {
@@ -14,282 +14,275 @@
         }
 
         body {
-            background-color: #f4f4f5;
-            color: #18181b;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            /* Light background for contrast to show the footer clearly */
+            background-color: #f4f4f5; 
             min-height: 100vh;
-            padding: 20px;
-        }
-
-        /* --- Layout Container --- */
-        .contact-container {
-            background: #ffffff;
-            width: 100%;
-            max-width: 1000px;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            overflow: hidden;
-        }
-
-        /* --- Left Column: Get In Touch --- */
-        .left-col {
-            background-color: #18181b;
-            color: #ffffff;
-            padding: 50px 40px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
         }
 
-        .left-col h2 {
-            font-size: 1.75rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 30px;
-            letter-spacing: -0.02em;
-        }
+        /* Push footer to bottom for demo purposes */
+        main { flex: 1; }
 
-        .contact-details {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-
-        .contact-details li {
-            font-size: 1.05rem;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            color: #d4d4d8;
-        }
-
-        .contact-details strong {
+        /* --- Footer Styles --- */
+        .qr-footer {
+            background-color: #0A0A0A;
             color: #ffffff;
-            width: 100px;
-            display: inline-block;
+            border-top: 1px solid #E8001D;
+            padding: 70px 20px 20px;
+            font-size: 0.95rem;
         }
 
-        .btn-whatsapp {
-            background-color: #25D366;
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            /* Proportional column widths for better visual balance */
+            grid-template-columns: 1.5fr 1fr 1fr 1.5fr; 
+            gap: 50px;
+        }
+
+        /* --- Column Headings --- */
+        .qr-footer h4 {
             color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Column 1: Brand --- */
+        .brand-col .footer-logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+        
+        .brand-col .footer-logo span {
+            color: #E8001D;
+        }
+
+        .brand-col .tagline {
+            color: #a1a1aa;
+            margin-bottom: 25px;
             font-size: 1rem;
-            padding: 14px 24px;
-            border-radius: 8px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.2s, transform 0.2s;
-            width: max-content;
+            width: 40px;
+            height: 40px;
+            background-color: #1a1a1a;
+            border-radius: 50%;
+            color: #ffffff;
+            transition: all 0.3s ease;
         }
 
-        .btn-whatsapp:hover {
-            background-color: #1ebd57;
-            transform: translateY(-2px);
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
         }
 
-        /* --- Right Column: Wholesale Form --- */
-        .right-col {
-            padding: 50px 40px;
-            background: #ffffff;
+        .social-link:hover {
+            background-color: #E8001D;
+            color: #ffffff;
+            transform: translateY(-3px);
         }
 
-        .right-col h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 24px;
-            color: #18181b;
+        /* --- Columns 2 & 3: Links --- */
+        .footer-links {
+            list-style: none;
         }
 
-        .form-group {
-            margin-bottom: 18px;
-            position: relative;
+        .footer-links li {
+            margin-bottom: 12px;
         }
 
-        .form-group input {
+        .footer-links a {
+            color: #a1a1aa;
+            text-decoration: none;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #E8001D;
+            padding-left: 5px;
+        }
+
+        /* --- Column 4: Newsletter --- */
+        .newsletter-col p {
+            color: #a1a1aa;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
             width: 100%;
             padding: 14px 16px;
-            border: 1.5px solid #e4e4e7;
-            border-radius: 8px;
-            font-size: 1rem;
-            color: #18181b;
-            transition: border-color 0.2s, background-color 0.2s;
+            background-color: #1a1a1a;
+            border: 1px solid #27272a;
+            color: #ffffff;
+            border-radius: 6px;
+            font-size: 0.95rem;
             outline: none;
+            transition: border-color 0.3s;
         }
 
-        .form-group input:focus {
-            border-color: #18181b;
+        .newsletter-form input::placeholder {
+            color: #71717a;
         }
 
-        .btn-submit {
-            background-color: #E50000; /* QR Cola Red */
+        .newsletter-form input:focus {
+            border-color: #E8001D;
+        }
+
+        .newsletter-form button {
+            background-color: #E8001D;
             color: #ffffff;
             border: none;
-            width: 100%;
-            padding: 16px;
-            font-size: 1.1rem;
+            padding: 14px 20px;
             font-weight: 700;
-            border-radius: 8px;
+            text-transform: uppercase;
+            border-radius: 6px;
             cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.2s;
+            transition: background-color 0.3s;
+            letter-spacing: 0.5px;
         }
 
-        .btn-submit:hover {
-            background-color: #cc0000;
+        .newsletter-form button:hover {
+            background-color: #cc0019;
         }
 
-        .form-footer {
+        /* --- Bottom Bar --- */
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding-top: 25px;
+            border-top: 1px solid #1f1f22;
             text-align: center;
-            margin-top: 16px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #52525b;
-        }
-
-        /* --- Validation Styles & Animation --- */
-        .form-group input.error-border {
-            border-color: #E50000 !important;
-            background-color: #fef2f2;
-        }
-
-        .inline-error {
-            color: #E50000;
+            color: #71717a;
             font-size: 0.85rem;
-            margin-top: 6px;
-            display: none; /* Hidden by default */
-            font-weight: 500;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-6px); }
-            40%, 80% { transform: translateX(6px); }
-        }
-
-        .shake-animation {
-            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
         }
 
         /* --- Responsive Design --- */
-        @media (max-width: 800px) {
-            .contact-container {
-                grid-template-columns: 1fr;
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
             }
-            .btn-whatsapp {
-                width: 100%;
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            .qr-footer {
+                padding: 50px 20px 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="contact-container">
-        <!-- Left: Retail / Get in Touch -->
-        <div class="left-col">
-            <h2>QUESTIONS? WE’VE GOT ANSWERS.</h2>
-            <ul class="contact-details">
-                <li><strong>Phone:</strong> +92-XXX-XXXXXXX</li>
-                <li><strong>Email:</strong> hello@qrcola.pk</li>
-                <li><strong>Instagram:</strong> @QRCola</li>
-            </ul>
-            <a href="https://wa.me/92XXXXXXXXX" target="_blank" class="btn-whatsapp">
-                💬 Chat on WhatsApp
-            </a>
-        </div>
+    <main></main> <!-- Added to push footer to bottom -->
 
-        <!-- Right: Wholesale Form -->
-        <div class="right-col">
-            <h2>STOCK QR COLA IN YOUR STORE</h2>
+    <footer class="qr-footer">
+        <div class="footer-container">
             
-            <form id="wholesaleForm" novalidate>
-                <div class="form-group">
-                    <input type="text" id="businessName" placeholder="Business Name">
-                    <div class="inline-error">Business Name is required</div>
+            <!-- Column 1: Brand -->
+            <div class="footer-col brand-col">
+                <div class="footer-logo">QR<span>COLA</span></div>
+                <p class="tagline">Not just a cola. A statement.</p>
+                <div class="social-icons">
+                    <!-- Facebook -->
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                        </svg>
+                    </a>
+                    <!-- Instagram -->
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                        </svg>
+                    </a>
+                    <!-- TikTok -->
+                    <a href="#" class="social-link" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 15.66a6.34 6.34 0 0010.86 4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                        </svg>
+                    </a>
+                    <!-- YouTube -->
+                    <a href="#" class="social-link" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <input type="text" id="contactPerson" placeholder="Contact Person">
-                    <div class="inline-error">Contact Person is required</div>
-                </div>
+            <!-- Column 2: Quick Links -->
+            <div class="footer-col links-col">
+                <h4>QUICK LINKS</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Wholesale</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
 
-                <div class="form-group">
-                    <input type="text" id="city" placeholder="City">
-                    <div class="inline-error">City is required</div>
-                </div>
+            <!-- Column 3: Legal -->
+            <div class="footer-col legal-col">
+                <h4>LEGAL</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                </ul>
+            </div>
 
-                <div class="form-group">
-                    <input type="tel" id="phone" placeholder="Phone Number">
-                    <div class="inline-error">Phone Number is required</div>
-                </div>
+            <!-- Column 4: Newsletter -->
+            <div class="footer-col newsletter-col">
+                <h4>JOIN THE QR FAMILY</h4>
+                <p>Get exclusive deals, new flavor launches & more.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">SUBSCRIBE</button>
+                </form>
+            </div>
 
-                <div class="form-group">
-                    <input type="text" id="quantity" placeholder="Monthly Quantity Needed (e.g. 50 crates)">
-                    <div class="inline-error">Please specify a monthly quantity</div>
-                </div>
-
-                <button type="submit" class="btn-submit">SEND INQUIRY</button>
-                <div class="form-footer">We respond within 24 hours ✅</div>
-            </form>
         </div>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('wholesaleForm');
-            const formGroups = form.querySelectorAll('.form-group');
-
-            // Handle Form Submission
-            form.addEventListener('submit', (e) => {
-                e.preventDefault(); 
-                let isFormValid = true;
-
-                formGroups.forEach(group => {
-                    const input = group.querySelector('input');
-                    const errorMsg = group.querySelector('.inline-error');
-
-                    // Reset animation trick (forces browser to replay animation if clicked again)
-                    input.classList.remove('shake-animation');
-                    void input.offsetWidth;
-
-                    // Validation Check
-                    if (input.value.trim() === '') {
-                        isFormValid = false;
-                        
-                        // Apply error classes and show inline message
-                        input.classList.add('error-border', 'shake-animation');
-                        errorMsg.style.display = 'block';
-                    } else {
-                        // Remove errors if valid
-                        input.classList.remove('error-border', 'shake-animation');
-                        errorMsg.style.display = 'none';
-                    }
-                });
-
-                if (isFormValid) {
-                    alert('Success! Your wholesale inquiry has been sent.');
-                    form.reset(); // Clear the form
-                }
-            });
-
-            // Remove error state dynamically as the user starts typing
-            formGroups.forEach(group => {
-                const input = group.querySelector('input');
-                const errorMsg = group.querySelector('.inline-error');
-
-                input.addEventListener('input', () => {
-                    if (input.value.trim() !== '') {
-                        input.classList.remove('error-border', 'shake-animation');
-                        errorMsg.style.display = 'none';
-                    }
-                });
-            });
-        });
-    </script>
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 QR Cola Pakistan. All Rights Reserved. | Made with ❤️ in Lahore</p>
+        </div>
+    </footer>
 
 </body>
 </html>
