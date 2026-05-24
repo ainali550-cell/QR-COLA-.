@@ -216,11 +216,29 @@
             z-index: 1;
         }
         .hero .container { position: relative; z-index: 2; }
-        .hero-content h1 { font-size: 6rem; margin-bottom: 20px; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .hero-content p { font-size: 1.25rem; font-weight: 500; margin-bottom: 40px; max-width: 600px; margin-inline: auto; color: #d4d4d8; }
-        .hero-buttons { display: flex; gap: 20px; justify-content: center; }
+        .hero-content { display: flex; align-items: center; justify-content: space-between; gap: 40px; text-align: left; width: 100%; }
+        .hero-text { flex: 1; }
+        .hero-text h1 { font-size: clamp(4rem, 10vw, 9rem); margin-bottom: 16px; text-shadow: 0 4px 20px rgba(0,0,0,0.5); line-height: 1; }
+        .hero-text h1 span { color: var(--brand-red); }
+        .hero-text .tagline { font-family: var(--font-mono); font-size: 1rem; letter-spacing: 4px; text-transform: uppercase; color: #E8001D; margin-bottom: 16px; display: block; }
+        .hero-text p { font-size: 1.15rem; font-weight: 500; margin-bottom: 32px; color: #d4d4d8; max-width: 480px; }
+        .hero-buttons { display: flex; gap: 20px; }
+        .hero-image { flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-end; }
+        .hero-image img {
+            width: clamp(200px, 30vw, 420px);
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(232,0,29,0.7)) drop-shadow(0 8px 24px rgba(0,0,0,0.8));
+            animation: logoPulse 3s ease-in-out infinite;
+        }
         .btn-outline { background: transparent; border: 2px solid var(--brand-white); color: var(--brand-white); }
         .btn-outline:hover { background: var(--brand-white); color: var(--brand-black); }
+        @media (max-width: 768px) {
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-text p { margin-inline: auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-image { justify-content: center; }
+            .hero-image img { width: clamp(180px, 55vw, 300px); }
+        }
 
         /* =========================================================
            4. TRUST SIGNALS STRIP
@@ -466,42 +484,27 @@
         </video>
         <div class="hero-overlay"></div>
         <div class="container hero-content fade-in">
-            <p style="font-family:var(--font-mono); font-size:1rem; letter-spacing:4px; text-transform:uppercase; color:#E8001D; margin-bottom:16px;">Pakistan's Boldest Cold Drink</p>
-            <h1 style="font-size:0; line-height:0; margin:0;">QR Cola</h1>
-            <img 
-                src="images/qr_logo_tight.png" 
-                alt="QR Cola Logo" 
-                style="
-                    width: clamp(280px, 45vw, 520px);
-                    height: auto;
-                    margin: 0 auto 24px;
-                    display: block;
-                    filter: drop-shadow(0 0 30px rgba(232,0,29,0.7)) drop-shadow(0 8px 24px rgba(0,0,0,0.8));
-                    animation: logoPulse 3s ease-in-out infinite;
-                "
-            />
-            <style>
-                @keyframes logoPulse {
-                    0%, 100% { filter: drop-shadow(0 0 30px rgba(232,0,29,0.7)) drop-shadow(0 8px 24px rgba(0,0,0,0.8)); transform: scale(1); }
-                    50% { filter: drop-shadow(0 0 50px rgba(232,0,29,1)) drop-shadow(0 8px 32px rgba(0,0,0,0.9)); transform: scale(1.03); }
-                }
-            </style>
-            <p style="
-                margin-top: 16px;
-                margin-bottom: 32px;
-                font-family: var(--font-head);
-                font-size: clamp(1.6rem, 4vw, 2.8rem);
-                letter-spacing: 4px;
-                text-transform: uppercase;
-                color: #ffffff;
-                text-shadow: 0 0 20px rgba(232,0,29,0.6), 0 2px 8px rgba(0,0,0,0.8);
-                line-height: 1.2;
-            ">QAARANF.MRQ<br><span style="color: var(--brand-red); font-size: 1.1em;">BEVERAGE</span></p>
-            <div class="hero-buttons">
-                <a href="#products" class="btn">Explore Flavors</a>
-                <a href="#brand-story" class="btn btn-outline">Our Story</a>
+            <!-- Left: Text -->
+            <div class="hero-text">
+                <span class="tagline">Pakistan's Boldest Cold Drink</span>
+                <h1>QR<br><span>COLA</span></h1>
+                <p>Bold. Refreshing. Proudly Pakistani. Order now and get free delivery across Pakistan.</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn">Explore Flavors</a>
+                    <a href="#brand-story" class="btn btn-outline">Our Story</a>
+                </div>
+            </div>
+            <!-- Right: Banner Image -->
+            <div class="hero-image">
+                <img src="images/qr_logo_tight.png" alt="QR Cola Logo" />
             </div>
         </div>
+        <style>
+            @keyframes logoPulse {
+                0%, 100% { filter: drop-shadow(0 0 30px rgba(232,0,29,0.7)) drop-shadow(0 8px 24px rgba(0,0,0,0.8)); transform: scale(1); }
+                50% { filter: drop-shadow(0 0 50px rgba(232,0,29,1)) drop-shadow(0 8px 32px rgba(0,0,0,0.9)); transform: scale(1.03); }
+            }
+        </style>
     </section>
 
     <!-- 4. TRUST SIGNALS STRIP -->
