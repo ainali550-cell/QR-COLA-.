@@ -791,17 +791,49 @@
                 link.addEventListener('click', () => navLinks.classList.remove('active'));
             });
 
-            /* --- 5. Countdown Timer --- */
+            /* --- 5. Real Persistent Countdown Timer --- */
             const timerEl = document.getElementById('countdownTimer');
-            let timeLeft = 5 * 3600 + 23 * 60 + 40; // Example: 5h 23m 40s
-            setInterval(() => {
-                if (timeLeft <= 0) return;
-                timeLeft--;
-                const h = Math.floor(timeLeft / 3600).toString().padStart(2, '0');
-                const m = Math.floor((timeLeft % 3600) / 60).toString().padStart(2, '0');
-                const s = (timeLeft % 60).toString().padStart(2, '0');
+            const annBar  = document.getElementById('announcement-bar');
+            const OFFER_DURATION_MS = 5 * 60 * 60 * 1000 + 18 * 60 * 1000; // 5h 18m in ms
+            const STORAGE_KEY = 'qrcola_offer_end';
+
+            // First visit: set end time and save it
+            let endTime = parseInt(localStorage.getItem(STORAGE_KEY));
+            if (!endTime || isNaN(endTime)) {
+                endTime = Date.now() + OFFER_DURATION_MS;
+                localStorage.setItem(STORAGE_KEY, endTime);
+            }
+
+            function updateTimer() {
+                const remaining = endTime - Date.now();
+
+                if (remaining <= 0) {
+                    // Offer expired
+                    timerEl.textContent = '00:00:00';
+                    timerEl.style.color = '#ff4444';
+                    if (annBar) {
+                        annBar.innerHTML = '<span>❌ OFFER ENDED — Stay tuned for the next deal!</span>';
+                        annBar.style.background = '#333';
+                    }
+                    localStorage.removeItem(STORAGE_KEY); // Reset for next visit
+                    return;
+                }
+
+                const totalSec = Math.floor(remaining / 1000);
+                const h = Math.floor(totalSec / 3600).toString().padStart(2, '0');
+                const m = Math.floor((totalSec % 3600) / 60).toString().padStart(2, '0');
+                const s = (totalSec % 60).toString().padStart(2, '0');
                 timerEl.textContent = `${h}:${m}:${s}`;
-            }, 1000);
+
+                // Turn red when under 30 minutes
+                if (remaining < 30 * 60 * 1000) {
+                    timerEl.style.color = '#ff4444';
+                    timerEl.style.animation = 'pulse 1s infinite';
+                }
+            }
+
+            updateTimer(); // Run immediately on load
+            setInterval(updateTimer, 1000); // Update every second
 
             /* --- 6. Scroll-Triggered Animations (IntersectionObserver) --- */
             const fadeElements = document.querySelectorAll('.fade-in');
